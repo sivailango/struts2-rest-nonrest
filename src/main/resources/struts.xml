@@ -9,6 +9,8 @@
 		
 		<constant name="struts.action.extension" value="xhtml,,xml,json,action" />
 		
+		<constant name="struts.rest.content.restrictToGET" value="false" />
+		
 		<!-- Its not a mandatory to set 'Controller' at the end of REST actions -->
 		<constant name="struts.convention.action.suffix" value="Action, Controller" />
     	<constant name="struts.convention.action.mapAllMatches" value="true" />

@@ -11,7 +11,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 public class UserController implements ModelDriven<Object> {
 	
-	private User user = new User();
+	public User user = new User();
 	
 	private String id;
 	
@@ -35,14 +35,14 @@ public class UserController implements ModelDriven<Object> {
 	
 	// POST	/api/users
 	public HttpHeaders create() {
-		users = repository.save(getUser());
-		System.out.println("POST \t /user");
+		users = repository.save(user);
+		System.out.println("POST \t /user" + user.getEmail());
 		return new DefaultHttpHeaders("create");
 	}
 	
 	// PUT	/api/users
 	public HttpHeaders update() {
-		users = repository.save(getUser());
+		users = repository.save(user);
 		System.out.println("PUT \t /user");
 		return new DefaultHttpHeaders("update");
 	}
@@ -76,7 +76,7 @@ public class UserController implements ModelDriven<Object> {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	
 	public User getUser() {
 		return user;
 	}
@@ -88,9 +88,13 @@ public class UserController implements ModelDriven<Object> {
 	public void setUsers(Map<String, User> users) {
 		this.users = users;
 	}
-
+	
 	public Object getModel() {
-		return users;
+		if(users == null) {
+			return user;	
+		} else {
+			return users;
+		}
 	}
 
 }
